@@ -1,0 +1,8 @@
+# Emacs Backup Files
+*~
+
+# Vi backup files
+*.un~
+
+# Instance Folder
+instance
