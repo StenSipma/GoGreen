@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+{% block title %}Ranking{% endblock %}
+
+{% block header %}Ranking{% endblock %}
+
+{% macro nav_rank_tab(refname, name, active=false) -%}
+  {% if active %}
+    {% set active_string = " active" %}
+  {% endif %}
+<a class="nav-item nav-link{{active_string}}" role="tab" id="nav-rank-{{ refname }}-tab" data-toggle="tab" href="#nav-rank-{{ refname }}" aria-controls="nav-rank-{{ refname }}" aria-selected="{{active}}">{{ name }}</a>
+{%- endmacro %}
+
+{% macro nav_rank_pane(refname, active=false) -%}
+  {% if active %}
+    {% set active_string = " show active" %}
+  {% endif %}
+<div class="tab-pane{{active_string}}" id="nav-rank-{{ refname}}" role="tabpanel" aria-labelledby="nav-rank-{{ refname }}-tab">
+    {{ caller() }}
+</div>
+{%- endmacro %}
+
+{% macro ranking_table(group) -%}
+<div class="table-responsive">
+    <table class="table table-striped table-borderless table-hover">
+	<tbody>
+	    {% for hh in group.ranking() %}
+	    <tr>
+		<th class="align-middle text-center px-0" scope="row">
+		    <h1>{{ loop.index }}</h1>
+		</th>
+		<td class="align-middle text-center px-0">
+		    <img class="img-tumbnail rounded" src="{{url_for('static', filename='images/profile/pp-'+str(hh['id'])+'.png') }}">
+		</td>
+		<td class="align-middle">
+		    <h1>{{ hh['name'] }}</h1>
+		</td>
+		<td class="align-middle"></td>
+		<td class="align-middle">
+		  <img src="{{ url_for('static', filename=get_badge_by_rank(hh['score'])) }}">
+		</td>
+	    </tr>
+	    {% endfor %}
+	</tbody>
+    </table>
+</div>
+{%- endmacro %}
+
+
+
+{% block content %}
+  {% set active=groups|length < 1 %}
+  <nav>
+    <div class="nav nav-tabs" id="ranking-tab" role="tablist">
+      {% for group in groups %}
+	{% if loop.index == 1 %}
+	  {{ nav_rank_tab(group.ref|string + group.name, group.name, active=true) }}	
+	{% else %}
+	  {{ nav_rank_tab(group.ref|string + group.name, group.name) }}
+	{% endif  %}
+      {% endfor %}
+
+      {{ nav_rank_tab("new", "+", active=active) }}
+    </div>
+  </nav>
+  <div class="tab-content" id="ranking-tabContent">    
+    {% for group in groups %}
+      {% if loop.index == 1 %}
+	{% call nav_rank_pane(group.ref|string + group.name, active=true) %}
+	  {{ ranking_table(group) }}
+	{% endcall %}
+      {% else %}
+	{% call nav_rank_pane(group.ref|string + group.name) %}
+	  {{ ranking_table(group) }}
+	{% endcall %}
+      {% endif  %}
+    {% endfor %}
+ 
+    {% call nav_rank_pane("new", active=active) %} 
+      <form method="post" class="my-3">
+          <div class="form-group">
+              <label for="group-name">Group Name</label>
+              <input name="group-name" type="text" placeholder="Name..." />
+          </div>
+          <div class="form-group">
+              <label for="friends-select">Select Friends (ctrl)</label>
+              <select class="form-control custom-select" name="friends-select" multiple>
+                  {% for friend in friends %}
+                  <option value="{{ friend['id'] }}">{{friend['name']}}</option>
+                  {% endfor %}
+              </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Make Group</button>
+      </form>
+    {% endcall %} 
+  </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+$theme-colors: (
+    "primary": #00CC00,
+    "primary-light": #CEF9CE,
+    "primary-dark": #013401,
+    "secondary": #009999,
+    "secondary-light": #E2FBFB,
+    "secondary-dark": #012727
+);
+
+$enable-shadows: true;
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+.landpage {
+    background-image: url("../images/background-forest-new.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navbar.scrolling-navbar {
+    transition: background .5s ease-in-out,padding .5s ease-in-out, opacity .5s ease-in-out;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    opacity: 0.01;
+}
+
+.navbar.scrolling-navbar.top-nav-normal {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    opacity: 1;
+}

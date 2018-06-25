@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+	      {% include "header-imports.html" %}
+
+	      <title>{% block title %} {% endblock%} - GoGreen</title>
+	      {% block head %}
+	      {% endblock %}
+    </head>
+
+    <body class="bg-primary-light">
+
+	      <!-- The Menu Bar -->
+	      {% include "menu.html" %}
+
+	      {% block landpage %}{% endblock %}
+
+        <nav id="main-content" class="nav my-5"></nav>
+        <!-- Page content -->
+        <main class="container my-5 p-5 bg-white rounded shadow">
+
+	          <!-- Place for possible error -->
+	          {% for message in get_flashed_messages() %}
+            <div class="row alert alert-danger" role="alert">
+		            {{ message }}
+	          </div>
+	          {% endfor %}
+
+	          <!-- Page title (header) -->
+            <div class="row content-header justify-content-center">
+                <h1 class="font-weight-bold">{% block header %}{% endblock %}</h1>
+	          </div>
+
+            <hr class="my-3"/>
+
+	          <!-- Page content -->
+	          <div class="row">
+                <div class="col-12 content-content">
+		                {% block content %}
+		                {% endblock %}
+		            </div>
+	          </div>
+
+            <div class="row content-footer">
+		            {% block footer %}
+		            {% endblock %}
+	          </div>
+	      </main>
+    </body>
+</html>
+
+<!--
+     General Breakpoints Overview:
+     (xs) Extra small devices (portrait phones, less than 576px)
+     (sm) Small devices (landscape phones, 576px and up)
+     (md) Medium devices (tablets, 768px and up)
+     (ld) Large devices (desktops, 992px and up)
+     (xl) Extra large devices (large desktops, 1200px and up)
+-->

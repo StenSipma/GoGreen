@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block title %}Ranking {% endblock %}
+
+{% block header %}Ranking: All{% endblock %}
+
+{% block content %}
+
+{% for hh, badges in households %}
+<div class="row align-items-center rank-row my-4 py-2">
+    <div class="col-sm-1 text-center rank-number">
+	<h1 class="font-weight-bold display-4">#{{ loop.index }}</h1>
+    </div>
+    <div class="col-sm-1 rank-profile-picture p-0 text-center">
+	<img src="{{url_for('static', filename='images/profile/pp-'+str(hh['id'])+'.png') }}">
+    </div>
+    <div class="col-sm-4">
+	<h1 class="">{{ hh['name'] }}</h1>
+    </div>
+    {% for badge in badges %}
+    <div class="col-sm-4 rank-achievement-col">
+	<img src="{{ url_for('static', filename=badge ) }}">
+    </div>
+    {% endfor %}
+    <div class="col-sm-2">
+	<h1 class="text-right">{{ '{:.1%}'.format(hh['score']/100.0) }}</h1>
+    </div>
+</div>
+{% endfor %}
+
+
+{% endblock %}

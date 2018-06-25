@@ -1,0 +1,47 @@
+{% macro navbar_menu(ref, name, enabled=true) -%}
+{% if ref == "#" %}
+<li class="nav-item mx-3">
+    <a class="nav-link disabled" href="#">{{name}}</a>
+</li>
+{% else %}
+<li class="nav-item mx-3">
+    <a class="nav-link" href="{{ url_for(ref) }}">{{name}}</a>
+</li>
+{% endif %}
+{%- endmacro %}
+
+{% if is_homepage is defined %}
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-primary scrolling-navbar">
+    {% else %}
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-primary scrolling-navbar top-nav-normal">
+	      {% endif %}
+	      <a class="navbar-brand" href="{{ url_for('home.home') }}">
+	          <img src="{{url_for('static', filename='images/planet-earth.svg')}}" width="30" height="30" class="d-inline-block align-top" alt="Logo">
+	          GoGreen
+	      </a>
+	      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#mainNavMenu" aria-controls="mainNavMenu" aria-expanded="false" aria-label="Toggle navigation">
+	          <span class="navbar-toggler-icon"></span>
+	      </button>
+	      <div class="collapse navbar-collapse" id="mainNavMenu">
+	          <ul class="navbar-nav">
+		            {{navbar_menu("home.std_home", "Home")}}
+		            {{navbar_menu("#", "Goals")}}
+		            {{navbar_menu("#", "About")}}
+		            {{navbar_menu("#", "Help")}}
+		            {{navbar_menu("#", "Contact")}}
+                {% if g.user %}
+ 		            {{navbar_menu("friends.friends", "Friends")}}
+		            {{navbar_menu("ranking.rank_groups", "Ranking")}}
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav ml-auto">
+			          {% if g.user %}
+	              {{navbar_menu("#", "Account")}}
+		            {{navbar_menu("auth.logout", "Logout")}}
+		            {% else %}
+		            {{navbar_menu("auth.login", "Login")}}
+		            {{navbar_menu("auth.register", "Register")}}
+		            {% endif %}
+            </ul>
+	      </div>
+    </nav>

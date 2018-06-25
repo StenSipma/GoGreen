@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}User Homepage{% endblock %}
+
+{% block header %}
+Your Current Sustainability Score
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col text-center">
+	<div id="score-image"></div>
+    </div>
+</div>
+
+<script>
+ $( document ).ready(function() {
+     $("#score-image").circliful({
+         animationStep: 10,
+         foregroundBorderWidth: 10,
+	 foregroundColor: "{{ color }}",
+	 backgroundColor: "#4db6ac",
+	 backgroundBorderWidth: 13,
+         percent: {{ score }},
+	 progresColor: {0:'#FF1700', 20: '#E8750C', 40: '#FFC700', 60: '#C4E80C', 80: '#0DFF1F'},
+	 fontColor: 'black',
+     });
+ });
+</script>
+{% endblock %}

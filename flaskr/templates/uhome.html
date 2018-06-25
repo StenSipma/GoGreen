@@ -1,0 +1,30 @@
+{% extends "layout-home.html" %}
+
+{% block title %}User Homepage{% endblock %}
+
+
+{% block landpage_content %}
+<div class="row justify-content-center">
+    <div class="col text-center">
+        <h1 class="display-4 mb-2">Welcome {{name}}!</h1>
+	<h1 class="display-4 mb-5">Your Current Score is</h1>
+        <div class="circle">
+	</div>
+    </div>
+</div>
+
+<script>
+ $( document ).ready(function() {
+     $('.circle').circleProgress({
+	 startAngle: -Math.PI/2,
+	 value: {{ score / 100 }},
+	 size: 500,
+	 fill: {
+	     gradient: ["{{ color[0] }}", "{{ color[1]}}"]
+	 }
+     });
+ });
+
+ 
+</script>
+{% endblock %}

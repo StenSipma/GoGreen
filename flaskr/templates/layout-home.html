@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<style type="text/css">
+ html, body {
+     height: 100%;
+ }
+</style>
+{% endblock %}
+
+{% block landpage %}
+<div class="landpage d-flex justify-content-center align-items-center">
+    <div class="container">
+
+      {% block landpage_content %}
+      {% endblock %}
+
+    </div>
+    
+</div>
+<script>
+ /* SCROLLING NAVBAR */
+ var OFFSET_TOP = 50;
+
+ $(window).scroll(function () {
+     if ($('.navbar').length) {
+	 if ($('.navbar').offset().top > OFFSET_TOP) {
+	     $('.scrolling-navbar').addClass("top-nav-normal");
+	 } else {
+	     $('.scrolling-navbar').removeClass("top-nav-normal");
+	 }
+     }
+ });
+</script>
+{% endblock %}
