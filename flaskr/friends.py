@@ -5,12 +5,6 @@ from flaskr.db import get_db
 bp = Blueprint('friends', __name__, url_prefix='/friends')
 
 
-@bp.route('/new')
-@login_required
-def add_friends():
-    pass
-
-
 @bp.route('', methods=['GET', 'POST'])
 @login_required
 def friends():

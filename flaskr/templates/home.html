@@ -1,5 +1,28 @@
 {% extends "layout-home.html" %}
 
+{% macro news_box(nr) -%}
+{% set even = (nr % 2 == 0) %}
+<div class="row">
+    {% if even %}
+    <div class="col-md-6 align-self-center">
+        {% else %}
+        <div class="col-md-6 align-self-center order-md-2">
+        {% endif %}
+        <h1>News Title!</h1>
+        <p class="lead">
+            Quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris sit amet massa vitae tortor. Amet massa vitae tortor condimentum lacinia quis!
+        </p>
+    </div>
+    {% if even %}
+    <div class="col-md-6 text-center align-self-center">
+        {% else %}
+        <div class="col-md-6 text-center align-self-center order-md-1">
+            {% endif %}
+        <img class="img-fluid mx-auto" src="https://placehold.it/500x500"/>
+    </div>
+</div>
+<hr class="my-3"/>
+{%- endmacro %}
 {% block title %}Home{% endblock %}
 
 {% block landpage_content %}
@@ -20,41 +43,13 @@
 {% endblock %}
 
 {% block header %}
-Some Posts / Introduction?
+Recent Projects
 {% endblock %}
 
-{% block content %}
-<p>
-    Tristique senectus et netus et malesuada fames ac turpis egestas sed. Nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa.
-    Convallis convallis tellus, id interdum velit laoreet id donec ultrices tincidunt arcu, non sodales neque sodales. Tempor nec feugiat nisl pretium fusce id velit ut tortor pretium viverra suspendisse potenti.
-    Augue interdum velit euismod in pellentesque massa placerat duis ultricies lacus sed turpis tincidunt id? Justo, nec ultrices dui sapien eget mi proin sed libero enim, sed faucibus turpis in.
-    Tristique senectus et netus et malesuada fames ac turpis egestas sed. Nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa.
-    Convallis convallis tellus, id interdum velit laoreet id donec ultrices tincidunt arcu, non sodales neque sodales. Tempor nec feugiat nisl pretium fusce id velit ut tortor pretium viverra suspendisse potenti.
-    Augue interdum velit euismod in pellentesque massa placerat duis ultricies lacus sed turpis tincidunt id? Justo, nec ultrices dui sapien eget mi proin sed libero enim, sed faucibus turpis in.Tristique senectus et netus et malesuada fames ac turpis egestas sed. Nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa.
-    Convallis convallis tellus, id interdum velit laoreet id donec ultrices tincidunt arcu, non sodales neque sodales. Tempor nec feugiat nisl pretium fusce id velit ut tortor pretium viverra suspendisse potenti.
-    Augue interdum velit euismod in pellentesque massa placerat duis ultricies lacus sed turpis tincidunt id? Justo, nec ultrices dui sapien eget mi proin sed libero enim, sed faucibus turpis in.Tristique senectus et netus et malesuada fames ac turpis egestas sed. Nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa.
-    Convallis convallis tellus, id interdum velit laoreet id donec ultrices tincidunt arcu, non sodales neque sodales. Tempor nec feugiat nisl pretium fusce id velit ut tortor pretium viverra suspendisse potenti.
-    Augue interdum velit euismod in pellentesque massa placerat duis ultricies lacus sed turpis tincidunt id? Justo, nec ultrices dui sapien eget mi proin sed libero enim, sed faucibus turpis in.Tristique senectus et netus et malesuada fames ac turpis egestas sed. Nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa.
-    Convallis convallis tellus, id interdum velit laoreet id donec ultrices tincidunt arcu, non sodales neque sodales. Tempor nec feugiat nisl pretium fusce id velit ut tortor pretium viverra suspendisse potenti.
-    Augue interdum velit euismod in pellentesque massa placerat duis ultricies lacus sed turpis tincidunt id? Justo, nec ultrices dui sapien eget mi proin sed libero enim, sed faucibus turpis in.Tristique senectus et netus et malesuada fames ac turpis egestas sed. Nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa.
-    Convallis convallis tellus, id interdum velit laoreet id donec ultrices tincidunt arcu, non sodales neque sodales. Tempor nec feugiat nisl pretium fusce id velit ut tortor pretium viverra suspendisse potenti.
-    Augue interdum velit euismod in pellentesque massa placerat duis ultricies lacus sed turpis tincidunt id? Justo, nec ultrices dui sapien eget mi proin sed libero enim, sed faucibus turpis in.Tristique senectus et netus et malesuada fames ac turpis egestas sed. Nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa.
-    Convallis convallis tellus, id interdum velit laoreet id donec ultrices tincidunt arcu, non sodales neque sodales. Tempor nec feugiat nisl pretium fusce id velit ut tortor pretium viverra suspendisse potenti.
-    Augue interdum velit euismod in pellentesque massa placerat duis ultricies lacus sed turpis tincidunt id? Justo, nec ultrices dui sapien eget mi proin sed libero enim, sed faucibus turpis in.Tristique senectus et netus et malesuada fames ac turpis egestas sed. Nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa.
-    Convallis convallis tellus, id interdum velit laoreet id donec ultrices tincidunt arcu, non sodales neque sodales. Tempor nec feugiat nisl pretium fusce id velit ut tortor pretium viverra suspendisse potenti.
-    Augue interdum velit euismod in pellentesque massa placerat duis ultricies lacus sed turpis tincidunt id? Justo, nec ultrices dui sapien eget mi proin sed libero enim, sed faucibus turpis in.Tristique senectus et netus et malesuada fames ac turpis egestas sed. Nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa.
-    Convallis convallis tellus, id interdum velit laoreet id donec ultrices tincidunt arcu, non sodales neque sodales. Tempor nec feugiat nisl pretium fusce id velit ut tortor pretium viverra suspendisse potenti.
-    Augue interdum velit euismod in pellentesque massa placerat duis ultricies lacus sed turpis tincidunt id? Justo, nec ultrices dui sapien eget mi proin sed libero enim, sed faucibus turpis in.Tristique senectus et netus et malesuada fames ac turpis egestas sed. Nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa.
-    Convallis convallis tellus, id interdum velit laoreet id donec ultrices tincidunt arcu, non sodales neque sodales. Tempor nec feugiat nisl pretium fusce id velit ut tortor pretium viverra suspendisse potenti.
-    Augue interdum velit euismod in pellentesque massa placerat duis ultricies lacus sed turpis tincidunt id? Justo, nec ultrices dui sapien eget mi proin sed libero enim, sed faucibus turpis in.Tristique senectus et netus et malesuada fames ac turpis egestas sed. Nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa.
-    Convallis convallis tellus, id interdum velit laoreet id donec ultrices tincidunt arcu, non sodales neque sodales. Tempor nec feugiat nisl pretium fusce id velit ut tortor pretium viverra suspendisse potenti.
-    Augue interdum velit euismod in pellentesque massa placerat duis ultricies lacus sed turpis tincidunt id? Justo, nec ultrices dui sapien eget mi proin sed libero enim, sed faucibus turpis in.Tristique senectus et netus et malesuada fames ac turpis egestas sed. Nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa.
-    Convallis convallis tellus, id interdum velit laoreet id donec ultrices tincidunt arcu, non sodales neque sodales. Tempor nec feugiat nisl pretium fusce id velit ut tortor pretium viverra suspendisse potenti.
-    Augue interdum velit euismod in pellentesque massa placerat duis ultricies lacus sed turpis tincidunt id? Justo, nec ultrices dui sapien eget mi proin sed libero enim, sed faucibus turpis in.Tristique senectus et netus et malesuada fames ac turpis egestas sed. Nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa.
-    Convallis convallis tellus, id interdum velit laoreet id donec ultrices tincidunt arcu, non sodales neque sodales. Tempor nec feugiat nisl pretium fusce id velit ut tortor pretium viverra suspendisse potenti.
-    Augue interdum velit euismod in pellentesque massa placerat duis ultricies lacus sed turpis tincidunt id? Justo, nec ultrices dui sapien eget mi proin sed libero enim, sed faucibus turpis in.Tristique senectus et netus et malesuada fames ac turpis egestas sed. Nec dui nunc mattis enim ut tellus elementum sagittis vitae et leo duis ut diam quam nulla porttitor massa.
-    Convallis convallis tellus, id interdum velit laoreet id donec ultrices tincidunt arcu, non sodales neque sodales. Tempor nec feugiat nisl pretium fusce id velit ut tortor pretium viverra suspendisse potenti.
-    Augue interdum velit euismod in pellentesque massa placerat duis ultricies lacus sed turpis tincidunt id? Justo, nec ultrices dui sapien eget mi proin sed libero enim, sed faucibus turpis in.
+{% block content_block %}
 
-</p>
+{% for i in range(10) %}
+{{ news_box(loop.index) }}
+{% endfor %}
+
 {% endblock %}
