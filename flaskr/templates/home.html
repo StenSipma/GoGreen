@@ -34,7 +34,7 @@
 
 <div class="row">
     <div class="col text-center">
-        <a role="button" href="#main-content" class="btn btn-lg btn-primary">Start Now!</a>
+        <!-- <a role="button" href="#main-content" class="btn btn-lg btn-primary">Start Now!</a> -->
         {% if not g.user %}
         <a role="button" href="{{url_for('auth.login')}}" class="btn btn-lg btn-primary">Login</a>
         {% endif %}

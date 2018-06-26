@@ -3,20 +3,26 @@
 {% block header %}Your Friends{% endblock %}
 
 {% macro user_card(user) -%}
-<div class="card text-center bg-primary">
+<div class="col-md-3">
+    <div class="card text-center bg-primary">
     <img class="card-img-top" alt="" src="{{url_for('static', filename='images/profile/pp-'+(user['id']|string)+'.png') }}"/>
     <div class="card-body">
-	<h5 class="card-title">{{user['name']}}</h5>
+	      <h5 class="card-title">{{user['name']}}</h5>
     </div>
 </div>
+</div>
+
 {%- endmacro %}
 
 
 {% block content %}
-<div class="card-deck">
-    {% for friend in friends %}
-    {{ user_card(friend) }}
-    {% endfor %}
+<div class="container">
+    <div class="row">
+        {% for friend in friends %}
+        {{ user_card(friend) }}
+        {% endfor %}       
+    </div>
+
 </div>
 
 <form class="form-inline " method="post">
