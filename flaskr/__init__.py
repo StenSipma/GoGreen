@@ -23,7 +23,7 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    from . import home, auth, db, ranking, friends, about, tips
+    from . import home, auth, db, ranking, friends, about, tips, projects
     db.init_app(app)
     app.register_blueprint(home.bp)
     app.register_blueprint(auth.bp)
@@ -31,6 +31,7 @@ def create_app(test_config=None):
     app.register_blueprint(friends.bp)
     app.register_blueprint(about.bp)
     app.register_blueprint(tips.bp)
+    app.register_blueprint(projects.bp)
 
     @app.route('/')
     def main():

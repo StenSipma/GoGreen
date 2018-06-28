@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block title %}Projects{% endblock %}
+{% block header %}
+Our Current Projects
+{% endblock %}
+
+{% macro project_card(project) -%}
+<div class="card text-center border-primary">
+    <img class="card-img-top" alt="" src="{{ url_for('static', filename='images/projects/'+project.img) }}"/>
+    <div class="card-body">
+        <h3 class="title">{{project.title}}</h3>
+        <p class="lead text-justify card-text">
+            {{project.summary}}
+        </p>
+    </div>
+    <div class="card-footer">
+        <a class="btn btn-primary btn-lg" href="#">More Info</a>
+        {% if g.user %}
+        <a class="btn btn-primary btn-lg" href="#">Assign Points</a>
+        {% endif %}
+    </div>
+</div>
+{%- endmacro %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        {% for project in projects %}
+        <div class="col-12 my-3">
+            {{project_card(project)}}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

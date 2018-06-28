@@ -19,9 +19,13 @@ def rank_groups():
     error=None
     if request.method == 'POST':
         group_name = request.form.get('group-name')
+        if group_name == "":
+            error = "Group name cannot be empty"
+        elif ' ' in group_name:
+            error = "Group name cannot contain spaces"
         friend_ids = request.form.getlist('friends-select')
         existing_group = db.execute("SELECT * FROM Groups WHERE group_name = ? AND user_id = ?", (group_name, user_id)).fetchone()
-        if existing_group is None:
+        if error is None and existing_group is None:
             group_id = db.execute(
                 """INSERT INTO Groups(user_id, group_name) VALUES (?, ?)""",
             (user_id, group_name)).lastrowid
@@ -29,7 +33,7 @@ def rank_groups():
             for friend_id in friend_ids:
                 db.execute("""INSERT INTO GroupMembers (group_id, user_id) VALUES (?, ?)""",(group_id, friend_id))
             db.commit()
-        else:
+        elif error is None:
             error = "You already have a group with that name"
         if error is not None:
             flash(error)
