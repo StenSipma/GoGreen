@@ -4,7 +4,7 @@ File for ranking pages
 
 from flask import Blueprint, render_template, g, request, flash
 from flaskr.db import get_db
-from flaskr.badge import get_badge_by_rank
+from flaskr.badge import get_badge_by_rank, randomize_other_badges
 from flaskr.auth import login_required
 from flaskr.groups import query_groups
 
@@ -34,6 +34,7 @@ def rank_groups():
         if error is not None:
             flash(error)
     groups = query_groups(user_id)
+    badges = [randomize_other_badges(len(g.members)+1) for g in groups]
 
     friends = db.execute(
         """SELECT id, name FROM Users
@@ -44,6 +45,6 @@ def rank_groups():
     ).fetchall()
     return render_template("ranking/ranking_groups.html",
                            friends=friends,
-                           groups=groups,
+                           groups=list(zip(groups, badges)),
                            str=str,
                            get_badge_by_rank=get_badge_by_rank)

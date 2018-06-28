@@ -2,7 +2,6 @@ from flaskr.db import get_db
 
 
 class Group:
-
     def __init__(self, user_id, group_id, members=None, name=None):
         self.owner = user_id
         self.ref = group_id
