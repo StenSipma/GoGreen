@@ -3,9 +3,9 @@
 {% block header %}Your Friends{% endblock %}
 
 {% macro user_card(user) -%}
-<div class="col-md-3">
+<div class="col-md-3 my-3">
     <div class="card text-center bg-primary">
-    <img class="card-img-top" alt="" src="{{url_for('static', filename='images/profile/pp-'+(user['id']|string)+'.png') }}"/>
+        <img class="card-img-top" alt="" src="{{url_for('static', filename='images/profile/lpp-'+(user['id']|string)+'.png') }}" onerror="this.src='{{url_for('static', filename='images/profile/placeholder.png') }}'"/>
     <div class="card-body">
 	      <h5 class="card-title">{{user['name']}}</h5>
     </div>
@@ -17,12 +17,11 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
         {% for friend in friends %}
         {{ user_card(friend) }}
-        {% endfor %}       
+        {% endfor %}
     </div>
-
 </div>
 
 <form class="form-inline " method="post">
