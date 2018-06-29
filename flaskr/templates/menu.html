@@ -35,7 +35,7 @@
             </ul>
             <ul class="navbar-nav ml-auto">
 			          {% if g.user %}
-	              {{navbar_menu("#", "Account")}}
+	              {{navbar_menu("account.account", "Account")}}
 		            {{navbar_menu("auth.logout", "Logout")}}
 		            {% else %}
 		            {{navbar_menu("auth.login", "Login")}}

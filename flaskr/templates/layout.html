@@ -21,8 +21,11 @@
         <main class="container my-5 p-5 bg-white rounded shadow">
 
 	          <!-- Place for possible error -->
-	          {% for message in get_flashed_messages() %}
-            <div class="row alert alert-danger" role="alert">
+	          {% for category, message in get_flashed_messages(with_categories=True) %}
+            {% if category == 'message' %}
+            {% set category = 'danger' %}
+            {% endif %}
+            <div class="row alert alert-{{category}}" role="alert">
 		            {{ message }}
 	          </div>
 	          {% endfor %}

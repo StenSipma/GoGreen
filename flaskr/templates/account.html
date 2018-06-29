@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Account
+{% endblock %}
+
+{% block header %}
+Acccount Information
+{% endblock %}
+
+{% macro form_in(title, ref, placeholder, size='12', type='text') -%}
+<div class="form-group col-md-{{size}}">
+    <label for="{{ref}}">{{title}}</label>
+    <input class="form-control" id="{{ref}}" type="{{type}}" placeholder="{{placeholder}}" />
+</div>
+{%- endmacro %}
+
+{% macro form_const(title, ref, type='text') -%}
+<div class="form-group row">
+    <label class="col-4 col-form-label" for="{{ref}}">{{title}}</label>
+    <div class="col-8">
+        <input readonly class="form-control-plaintext font-italic" id="{{ref}}" type="{{type}}" value="{{g.user[ref]}}"/>
+    </div>
+</div>
+{%- endmacro %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 order-md-1">
+            <!-- <h4 class="text-center mb-3">Current Info</h4> -->
+            <img class="img-fluid rounded" src="{{url_for('static', filename='images/profile/lpp-'+(g.user['id']|string)+'.png') }}" onerror="this.src='{{url_for('static', filename='images/profile/placeholder.png') }}'"/>
+            <hr/>
+            <form>
+                {{form_const('Username', 'username')}}
+                {{form_const('Name', 'name')}}
+                {{form_const('Email', 'email')}}
+                {{form_const('Street', 'street_name')}}
+                {{form_const('Number', 'street_number')}}
+                {{form_const('City', 'city')}}
+                {{form_const('Postcode', 'postcode')}}
+                {{form_const('EAN-Energy', 'ean_energy')}}
+                {{form_const('EAN-Gas', 'ean_gas')}}
+            </form>
+            <hr/>
+        </div>
+        <div class="col-md-8 order-md-2">
+            <h4 class="text-center mb-3">Additional Information</h4>
+            <form method="post">
+                <div class="form-row">
+                    {{ form_in('Household Members', 'hh-mem', '1', type='number', size='6') }}
+                    <div class="form-group col-md-12">
+                        <label for="payment-plan">Payment Plan</label>
+                        <select class="form-control" id="payment-plan">
+                            <option value="plan1">Standard:  €0/month</option>
+                            <option value="plan2">Supporter: €2/month</option>
+                        </select>
+                    </div>
+                    {{ form_in('Credit Card', 'cc-info', 'Your Credit Card Information') }}
+                </div>
+                <button class="btn btn-primary btn-lg">Update Information</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
