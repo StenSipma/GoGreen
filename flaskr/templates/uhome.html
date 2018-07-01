@@ -5,27 +5,25 @@
 
 {% block landpage_content %}
 <div class="row justify-content-center">
-    <div class="col text-center text-primary-dark">
+    <div class="main-text col text-center text-primary-dark">
         <h1 class="display-4 font-weight-bold mb-2">Welcome {{name}}!</h1>
 	      <h1 class="display-4 mb-3">Your Current Score is:</h1>
         <h1 class="display-2 font-italic mb-3">{{'{:4.4}'.format(score)}}%</h1>
-        <div class="circle img-fluid">
+        <div id="circle" class="p-3">
 	      </div>
     </div>
 </div>
 
 <script>
- $( document ).ready(function() {
-     $('.circle').circleProgress({
-	       startAngle: -Math.PI/2,
-	       value: {{ score / 100 }},
-	       size: 500,
-	       fill: {
-	           gradient: ["{{ color[0] }}", "{{ color[1]}}"]
-	       }
-     });
+ var circle = $('#circle').circleProgress({
+	   startAngle: -Math.PI/2,
+	   value: {{ score / 100 }},
+     size: 1500,
+	   fill: {
+	       gradient: ["{{ color[0] }}", "{{ color[1]}}"]
+	   }
  });
-
-
+ var canvas = $('#circle').circleProgress('widget');
+ canvas.removeAttribute("style")
 </script>
 {% endblock %}
