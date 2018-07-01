@@ -26,10 +26,10 @@
 	          {% for hh in group.ranking() %}
             {% set rank = loop.index0 %}
 	          <tr>
-		            <th class="align-middle text-center px-0" scope="row">
+		            <td class="align-middle text-center" scope="row">
 		                <h1>{{ loop.index }}</h1>
-		            </th>
-		            <td class="align-middle text-center px-0">
+		            </td>
+		            <td class="align-middle text-center">
 		                <img class="img-tumbnail rounded" src="{{url_for('static', filename='images/profile/lpp-'+str(hh['id'])+'.png') }}" width="75" height="75" onerror="this.src='{{url_for('static', filename='images/profile/placeholder.png') }}'">
 		            </td>
 		            <td class="align-middle">
